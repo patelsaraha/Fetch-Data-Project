@@ -39,6 +39,7 @@
 **Closed-ended questions:**
 
 What are the top 5 brands by receipts scanned among users 21 and over?
+
 WITH AgeFilteredUsers AS (
     SELECT ID, BIRTH_DATE
     FROM Users
@@ -53,6 +54,7 @@ ORDER BY receipt_count DESC
 LIMIT 5;
 
 What are the top 5 brands by sales among users that have had their account for at least six months?
+
 WITH EligibleUsers AS (
     SELECT ID
     FROM Users
@@ -67,6 +69,7 @@ ORDER BY total_sales DESC
 LIMIT 5;
 
 What is the percentage of sales in the Health & Wellness category by generation?
+
 WITH UserGenerations AS (
     SELECT ID,
            CASE 
@@ -92,6 +95,7 @@ ORDER BY sales_percentage DESC;
 **Open-ended questions: for these, make assumptions and clearly state them when answering the question.**
 
 Who are Fetch’s power users?
+
 SELECT t.USER_ID, COUNT(DISTINCT t.RECEIPT_ID) AS receipt_count, SUM(t.FINAL_SALE) AS total_spent
 FROM Transactions t
 GROUP BY t.USER_ID
@@ -99,6 +103,7 @@ HAVING COUNT(DISTINCT t.RECEIPT_ID) > 50 AND SUM(t.FINAL_SALE) > 1000
 ORDER BY total_spent DESC, receipt_count DESC;
 
 Which is the leading brand in the Dips & Salsa category?
+
 SELECT p.BRAND, SUM(t.FINAL_SALE) AS total_sales
 FROM Transactions t
 JOIN Products p ON t.BARCODE = p.BARCODE
@@ -109,6 +114,7 @@ LIMIT 1;
 
 
 At what percent has Fetch grown year over year?
+
 WITH YearlySales AS (
     SELECT DATE_PART('year', PURCHASE_DATE) AS sales_year, SUM(FINAL_SALE) AS total_sales
     FROM Transactions
