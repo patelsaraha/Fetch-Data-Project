@@ -125,3 +125,27 @@ SELECT s1.sales_year AS year,
 FROM YearlySales s1
 JOIN YearlySales s2 ON s1.sales_year = s2.sales_year + 1
 ORDER BY s1.sales_year DESC;
+
+**Third: communicate with stakeholders**
+**Example**
+
+Hi [Stakeholder’s Name],
+
+I wanted to share some key findings from my analysis of the Fetch data, including data quality concerns, an interesting trend, and a few outstanding questions that require further clarification.
+
+Key Data Quality Issues:
+Missing Data:
+Some users have missing values in STATE, LANGUAGE, GENDER, and BIRTH_DATE, which impacts segmentation and demographic analysis.
+The BARCODE field is missing in ~11.5% of transactions, making it difficult to attribute sales to specific brands.
+Data Consistency Issues:
+FINAL_SALE and FINAL_QUANTITY were stored as text instead of numeric values, requiring conversion.
+Date fields (PURCHASE_DATE, SCAN_DATE, etc.) were inconsistent in format, which could lead to errors in time-based reporting.
+Potential Data Gaps:
+There are 830,315 fewer unique barcodes in transactions compared to the products table. This could indicate missing transaction records or product catalog inconsistencies.
+Interesting Trend:
+Top Brands by Receipts Scanned (Users 21+): A key finding from the data is that Fetch users aged 21 and over frequently scan receipts for [Brand X, Brand Y, Brand Z]. This suggests strong brand engagement and potential marketing opportunities for these brands.
+Outstanding Questions & Request for Action:
+Barcode Matching Issue: Can we confirm whether the product catalog is up to date and aligned with transaction records? Do we expect products to appear in transactions that are missing from our product master file?
+Missing User Data: Is there a source where we can retrieve missing demographic information, or should we exclude incomplete records from certain analyses?
+Growth Metrics Validation: The year-over-year growth calculation assumes all transaction records are captured. Can we verify whether any historical data is missing?
+Would love to discuss these findings and any additional context you might have. Let me know if we can sync up to resolve these issues and refine the insights further.
